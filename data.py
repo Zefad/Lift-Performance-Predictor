@@ -11,7 +11,7 @@ ctk.set_default_color_theme("dark-blue")  # Themes: "blue", "green", "dark-blue"
 CSV_FILE = 'data.csv'
 
 # Define the headers for the CSV file
-CSV_HEADERS = ['ID', 'sex', 'experience_years', 'age', 'bodyweightkg', 'Squat', 'Deadlift', 'Bench']
+CSV_HEADERS = ['ID', 'Sex', 'Experience Years', 'Age', 'Bodyweight (KG)', 'Squat (KG)', 'Deadlift (KG)', 'Bench (KG)']
 
 # Ensure CSV file exists with headers if it's new
 if not os.path.exists(CSV_FILE):
@@ -22,9 +22,9 @@ if not os.path.exists(CSV_FILE):
 class PerformanceApp(ctk.CTk):
     def __init__(self):
         super().__init__()
-        self.title("Performance Database GUI")
+        self.title("Performance Database")
         self.geometry("800x600")
-        self.minsize(600, 400)
+        self.minsize(800, 600)
 
         # Responsive grid
         self.grid_columnconfigure(0, weight=1)
@@ -57,7 +57,7 @@ class PerformanceApp(ctk.CTk):
         # Two rows, four columns layout
         for i in range(4): input_frame.grid_columnconfigure(i, weight=1)
 
-        fields = ['ID','sex','experience_years','age','bodyweightkg','Squat','Deadlift','Bench']
+        fields = ['ID', 'Sex', 'Experience Years', 'Age', 'Bodyweight (KG)', 'Squat (KG)', 'Deadlift (KG)', 'Bench (KG)']
         self.entry_vars = {}
         for idx, field in enumerate(fields):
             row = (idx // 4) * 2
@@ -102,13 +102,13 @@ class PerformanceApp(ctk.CTk):
             # Get values from entry fields
             new_record = {
                 'ID': int(self.entry_vars['ID'].get()),
-                'sex': self.entry_vars['sex'].get().strip(),
-                'experience_years': float(self.entry_vars['experience_years'].get()),
-                'age': float(self.entry_vars['age'].get()),
-                'bodyweightkg': float(self.entry_vars['bodyweightkg'].get()),
-                'Squat': float(self.entry_vars['Squat'].get()),
-                'Deadlift': float(self.entry_vars['Deadlift'].get()),
-                'Bench': float(self.entry_vars['Bench'].get())
+                'Sex': self.entry_vars['Sex'].get().strip(),
+                'Experience Years': float(self.entry_vars['Experience Years'].get()),
+                'Age': float(self.entry_vars['Age'].get()),
+                'Bodyweight (KG)': float(self.entry_vars['Bodyweight (KG)'].get()),
+                'Squat (KG)': float(self.entry_vars['Squat (KG)'].get()),
+                'Deadlift (KG)': float(self.entry_vars['Deadlift (KG)'].get()),
+                'Bench (KG)': float(self.entry_vars['Bench (KG)'].get())
             }
 
             # Read existing data to check for duplicate ID
