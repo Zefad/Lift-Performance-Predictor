@@ -22,10 +22,10 @@ def train_model():
     df = load_data_from_csv()
     if df.empty:
         return None # Or handle more gracefully, e.g., raise an error
-    # Convert sex to numerical values (1 for M, 0 for F)
-    df['sex'] = df['sex'].map({'M': 1, 'F': 0})
-    X = df[['sex', 'experience_years', 'age', 'bodyweightkg']]
-    y = df[['Squat', 'Deadlift', 'Bench']]
+    # Convert Sex to numerical values (1 for M, 0 for F)
+    df['Sex'] = df['Sex'].map({'M': 1, 'F': 0})
+    X = df[['Sex', 'Experience Years', 'Age', 'Bodyweight (KG)']]
+    y = df[['Squat (KG)', 'Deadlift (KG)', 'Bench (KG)']]
     return LinearRegression().fit(X, y)
 
 class LiftPredictorApp(ctk.CTk):
@@ -67,18 +67,18 @@ class LiftPredictorApp(ctk.CTk):
         self.sex_combo.set("M")
         self.sex_combo.grid(row=0, column=1, padx=10, pady=10, sticky="ew")
 
-        # Experience
-        ctk.CTkLabel(input_frame, text="Experience (years)", font=ctk.CTkFont(size=14)).grid(row=1, column=0, padx=10, pady=10, sticky="w")
+        # Experience Years
+        ctk.CTkLabel(input_frame, text="Experience Years", font=ctk.CTkFont(size=14)).grid(row=1, column=0, padx=10, pady=10, sticky="w")
         self.exp_entry = ctk.CTkEntry(input_frame, placeholder_text="e.g., 3.5")
         self.exp_entry.grid(row=1, column=1, padx=10, pady=10, sticky="ew")
 
         # Age
-        ctk.CTkLabel(input_frame, text="Age (years)", font=ctk.CTkFont(size=14)).grid(row=2, column=0, padx=10, pady=10, sticky="w")
+        ctk.CTkLabel(input_frame, text="Age", font=ctk.CTkFont(size=14)).grid(row=2, column=0, padx=10, pady=10, sticky="w")
         self.age_entry = ctk.CTkEntry(input_frame, placeholder_text="e.g., 28")
         self.age_entry.grid(row=2, column=1, padx=10, pady=10, sticky="ew")
 
-        # Bodyweight
-        ctk.CTkLabel(input_frame, text="Bodyweight (kg)", font=ctk.CTkFont(size=14)).grid(row=3, column=0, padx=10, pady=10, sticky="w")
+        # Bodyweight (KG)
+        ctk.CTkLabel(input_frame, text="Bodyweight (KG)", font=ctk.CTkFont(size=14)).grid(row=3, column=0, padx=10, pady=10, sticky="w")
         self.weight_entry = ctk.CTkEntry(input_frame, placeholder_text="e.g., 75")
         self.weight_entry.grid(row=3, column=1, padx=10, pady=10, sticky="ew")
 
@@ -111,7 +111,7 @@ class LiftPredictorApp(ctk.CTk):
             squat, deadlift, bench = self.model.predict(features)[0]
 
             result_text = (
-                f"🔹 Squat: {squat:.2f} kg   |   🔹 Deadlift: {deadlift:.2f} kg   |   🔹 Bench: {bench:.2f} kg"
+                f"🔹 Squat (KG): {squat:.2f}   |   🔹 Deadlift (KG): {deadlift:.2f}   |   🔹 Bench (KG): {bench:.2f}"
             )
             self.result_label.configure(text=result_text)
         except Exception as e:
