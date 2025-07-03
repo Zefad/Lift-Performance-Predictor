@@ -1,4 +1,4 @@
-ID,sex,experience_years,age,bodyweightkg,Squat,Deadlift,Bench
+ID,Sex,Experience Years,Age,Bodyweight (KG),Squat (KG),Deadlift (KG),Bench (KG)
 1,M,7.175,27,74.95,125,165,89.125
 2,M,8.645,20,88,187.5,240,133.6875
 3,M,9.495,25,67,185,190,131.905
